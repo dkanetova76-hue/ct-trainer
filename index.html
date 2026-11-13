@@ -1415,11 +1415,11 @@ cloudInit();
     return {w, S, tavg: tv.length ? Math.round(tv.reduce((a, x) => a + x, 0) / tv.length) : null, rn: rv.length, rc: rg.length, rgav: rg.length ? (rg.reduce((a, x) => a + +x, 0) / rg.length).toFixed(1).replace('.', ',') : null};
   }
   function html(R){
-    return `<div class="pg"><h3>${T.title} · ${e(P.name)}</h3><p class="pg-sub">${T.week(R.w)} · ${fd(new Date())}</p>
+    return `<div class="pg"><h3>${T.title} · ${e((KY && P.nameKy) || P.name)}</h3><p class="pg-sub">${T.week(R.w)} · ${fd(new Date())}</p>
       ${R.S.map(s => `<div class="pg-row"><div class="pg-hd"><b>${T.st[s.m]} · ${T.till(fd(s.end))}</b><span>${T.done(s.d, s.n)}</span></div>
         <div class="pg-bar"><span style="width:${s.n ? Math.round(s.d / s.n * 100) : 0}%"></span></div>
         <div class="pg-st ${s.cls}">${e(s.msg)}</div>
-        ${s.left.length && s.phase !== 'future' ? `<details${s.phase === 'past' ? ' open' : ''}><summary>${T.notdone(s.left.length)}</summary><ul>${s.left.map(x => `<li>${e(x.t)}</li>`).join('')}</ul></details>` : ''}</div>`).join('')}
+        ${s.left.length && s.phase !== 'future' ? `<details${s.phase === 'past' ? ' open' : ''}><summary>${T.notdone(s.left.length)}</summary><ul>${s.left.map(x => `<li>${e((KY && x.ky) || x.t)}</li>`).join('')}</ul></details>` : ''}</div>`).join('')}
       <p class="pg-foot">${R.tavg != null ? T.tests(R.tavg) + ' · ' : ''}${T.reps(R.rc, R.rn, R.rgav)}<br><span class="pg-mut">${T.hint}</span></p></div>`;
   }
   /* блок в «Мои работы» */
